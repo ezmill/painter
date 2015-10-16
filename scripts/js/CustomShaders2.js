@@ -485,7 +485,7 @@ var CustomShaders = function(){
 			// "    gl_FragColor = repos;",
 			"  vec3 hsv = rgb2hsv(repos.rgb);",
 
-			"  hsv.r += 0.01;",
+			"  hsv.r += 0.003;",
 			"  hsv.r = mod(hsv.r, 1.0);",
 			"  hsv.g *= 1.01;",
 			"  //hsv.g = mod(hsv.g, 1.0);",
