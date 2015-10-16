@@ -1,6 +1,7 @@
 var container;
 var scene, camera, light, renderer;
 var renderSize = new THREE.Vector2(window.innerWidth, window.innerHeight);
+//wtf
 // var renderSize = new THREE.Vector2(2448,3264);
 var mouse = new THREE.Vector2(0.0,0.0);
 var mouseDown = false;
