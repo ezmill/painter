@@ -64,6 +64,11 @@ function init(){
 	document.addEventListener("mousemove", onMouseMove);
 	document.addEventListener("mousedown", onMouseDown);
 	document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+    document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+    document.addEventListener( 'touchend', onDocumentTouchEnd, false );
+    document.addEventListener( 'touchcancel', onDocumentTouchEnd, false );
+    document.addEventListener( 'touchleave', onDocumentTouchEnd, false );
     document.addEventListener( 'keydown', function(){screenshot(renderer)}, false );
 
 }
@@ -79,6 +84,28 @@ function onMouseMove(event){
     for(var i = 0; i < fbMaterial.fbos.length; i++){
       // fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(0.01,0.01);
     }
+}
+function onDocumentTouchStart( event ) {
+    if ( event.touches.length === 1 ) {
+        event.preventDefault();
+        gradient.sampleColors();
+        r2 = Math.random()*2.0;
+        mouse.x = ( event.touches[ 0 ].pageX / renderSize.x ) * 2 - 1;
+        mouse.y = - ( event.touches[ 0 ].pageY / renderSize.y ) * 2 + 1;
+    }
+}
+
+function onDocumentTouchMove( event ) {
+    if ( event.touches.length === 1 ) {
+        event.preventDefault();
+        mouse.x = ( event.touches[ 0 ].pageX / renderSize.x ) * 2 - 1;
+        mouse.y = - ( event.touches[ 0 ].pageY / renderSize.y ) * 2 + 1;
+    }
+}
+    
+function onDocumentTouchEnd( event ) {
+    mouse.x = 0; 
+    mouse.y = 0;
 }
 function onMouseDown(){
 	mouseDown = true;
